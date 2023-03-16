@@ -6,14 +6,30 @@ df = pd.read_csv('happy.csv')
 options = [i.replace ("_", " ").title () for i in df.columns.values]
 
 st.title("In Search for Happiness")
-option_x = st.selectbox("Select data X axis",
-                      options)
-option_y = st.selectbox("Select data Y axis",
-                      options)
+option_x = st.selectbox("Select the data for the X-axis",
+                      ("GDP", "Happiness", "Generosity"))
+option_y = st.selectbox("Select the data for the Y-axis",
+                      ("GDP", "Happiness", "Generosity"))
+
+x_array = None
+match option_x:
+    case "Happiness":
+        x_array = df["happiness"]
+    case "GDP":
+        x_array = df["gdp"]
+    case "Generosity":
+        x_array = df["generosity"]
+
+y_array = None
+match option_y:
+    case "Happiness":
+        y_array = df["happiness"]
+    case "GDP":
+        y_array = df["gdp"]
+    case "Generosity":
+        y_array = df["generosity"]
+
 st.subheader(f"{option_x} and {option_y}")
 
-x_axis = df.iloc[:, options.index (option_x)]
-y_axis = df.iloc[:, options.index (option_y)]
-
-figure = px.scatter(x=x_axis, y=y_axis, labels={"x": option_x, "y": option_y})
-st.plotly_chart (figure)
+figure1 = px.scatter(x=x_array, y=y_array, labels={"x": option_x, "y": option_y})
+st.plotly_chart(figure1)
