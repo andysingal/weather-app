@@ -1,3 +1,4 @@
+#https://github.com/NikhileshShah01/Weather-Forecasting/blob/main/weather.py
 import streamlit as st
 import datetime,requests
 from plotly import graph_objects as go
@@ -13,6 +14,15 @@ unit=st.selectbox("SELECT TEMPERATURE UNIT ",["Celsius","Fahrenheit"])
 speed=st.selectbox("SELECT WIND SPEED UNIT ",["Metre/sec","Kilometre/hour"])
 
 graph = st.radio ("SELECT GRAPH TYPE ", ["Bar Graph", "Line Graph"])
+page_bg_img = '''
+ <style>
+    .stApp,.e8zbici2 {
+    background-image: url("https://images-na.ssl-images-amazon.com/images/I/61+oIVFF7FL.png");
+    background-size: cover;
+    }
+    </style>
+    '''
+
 
 st.markdown (
     """
